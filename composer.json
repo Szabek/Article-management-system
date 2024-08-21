@@ -19,6 +19,6 @@
     "symfony/var-dumper": "7.2.x-dev"
   },
   "require": {
-    "ext-http": "*"
+    "nikic/fast-route": "^2.0@dev"
   }
 }
