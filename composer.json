@@ -1,2 +1,24 @@
 {
+  "name": "szabek/article-management-system",
+  "description": "A article management system",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Danmiel Chabowski",
+      "email": "chabowski227@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "Szabek\\Framework\\": "framework/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "7.2.x-dev"
+  },
+  "require": {
+    "nikic/fast-route": "^2.0@dev"
+  }
 }
