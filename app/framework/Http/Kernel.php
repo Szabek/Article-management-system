@@ -2,6 +2,7 @@
 
 namespace Szabek\Framework\Http;
 
+use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use function FastRoute\simpleDispatcher;
 
@@ -23,11 +24,18 @@ class Kernel
             $request->getPathInfo()
         );
 
-        [$status, [$controller, $method], $vars] = $routeInfo;
-
-        // Call the handler, provided by the route info, in order to create response
-        $response = call_user_func_array([new $controller, $method], $vars);
-
-        return $response;
+        switch ($routeInfo[0]) {
+            case Dispatcher::NOT_FOUND:
+                return new Response('404 Not Found', 404);
+            case Dispatcher::METHOD_NOT_ALLOWED:
+                return new Response('405 Method Not Allowed', 405);
+            case Dispatcher::FOUND:
+                [$controller, $method] = $routeInfo[1];
+                $vars = $routeInfo[2];
+                $response = call_user_func_array([new $controller, $method], $vars);
+                return $response;
+            default:
+                return new Response('500 Internal Server Error', 500);
+        }
     }
 }
