@@ -30,6 +30,7 @@ services:
     image: mysql:8.0
     volumes:
       - mysqldata:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
     ports:
       - "4306:3306"
     restart: unless-stopped
