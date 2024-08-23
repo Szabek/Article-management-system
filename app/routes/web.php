@@ -1,7 +1,7 @@
 <?php
 
 use App\Article\Infrastructure\Controller\ArticleController;
-use App\Article\Infrastructure\Controller\HomeController;
+use App\Dashboard\Infrastructure\Controller\HomeController;
 
 return [
   ['GET', '/', [HomeController::class, 'index']],
