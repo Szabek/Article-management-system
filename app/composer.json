@@ -20,6 +20,7 @@
   },
   "require": {
     "nikic/fast-route": "^2.0@dev",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "twig/twig": "4.x-dev"
   }
 }
