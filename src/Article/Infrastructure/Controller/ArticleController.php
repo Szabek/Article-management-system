@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Article\Infrastructure\Controller;
 
 use Szabek\Framework\Http\Response;
 
