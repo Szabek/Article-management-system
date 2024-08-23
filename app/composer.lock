@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3367fa2b3e255eb2dbd59ff54e7215b8",
+    "content-hash": "89493f36909ec9ca7182320bd336ad5f",
     "packages": [
         {
             "name": "nikic/fast-route",
@@ -211,12 +211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "a9f7f10b27d1a056930e0d68a37e14061ac94afb"
+                "reference": "70171f7b88875de55e09d8d7e73a2b8d938a8902"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/a9f7f10b27d1a056930e0d68a37e14061ac94afb",
-                "reference": "a9f7f10b27d1a056930e0d68a37e14061ac94afb",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/70171f7b88875de55e09d8d7e73a2b8d938a8902",
+                "reference": "70171f7b88875de55e09d8d7e73a2b8d938a8902",
                 "shasum": ""
             },
             "require": {
@@ -286,17 +286,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-16T15:52:02+00:00"
+            "time": "2024-08-22T07:36:46+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "nikic/fast-route": 20,
         "symfony/var-dumper": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-pdo": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }
