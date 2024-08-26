@@ -3,7 +3,7 @@
 namespace App\Article\Infrastructure\Controller;
 
 use App\Article\Infrastructure\ArticleListPresenterInterface;
-use App\Article\Presentation\ArticleViewModel;
+use App\Article\Infrastructure\Presenter\ArticleViewModel;
 use Szabek\Framework\Http\Response;
 
 class ArticleController

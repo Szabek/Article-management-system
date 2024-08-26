@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Article\Presentation;
+namespace App\Article\Infrastructure\Presenter;
 
 class ArticleViewModel
 {

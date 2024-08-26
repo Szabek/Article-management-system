@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Presentation;
+namespace App\User\Infrastructure\Presenter;
 
 class LoginViewModel
 {

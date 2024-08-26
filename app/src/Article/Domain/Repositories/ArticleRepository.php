@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Article\Infrastructure\Repository;
+namespace App\Article\Domain\Repositories;
 
 use App\Article\Domain\Entity\Article;
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
 use PDO;
 
 class ArticleRepository implements ArticleRepositoryInterface

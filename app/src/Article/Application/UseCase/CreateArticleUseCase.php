@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Article\Domain\UseCase;
+namespace App\Article\Application\UseCase;
 
 use App\Article\Domain\Entity\Article;
 use App\Article\Domain\Repositories\ArticleRepositoryInterface;
 
-class GetArticleUseCase
+class CreateArticleUseCase
 {
     private ArticleRepositoryInterface $articleRepository;
 
@@ -14,8 +14,10 @@ class GetArticleUseCase
         $this->articleRepository = $articleRepository;
     }
 
-    public function execute(int $id): ?Article
+    public function execute(string $title, string $description): Article
     {
-        return $this->articleRepository->findById($id);
+        $article = new Article($title, $description);
+        $this->articleRepository->save($article);
+        return $article;
     }
 }

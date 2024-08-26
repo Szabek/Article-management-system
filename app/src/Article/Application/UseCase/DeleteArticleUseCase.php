@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Article\Domain\UseCase;
+namespace App\Article\Application\UseCase;
 
 use App\Article\Domain\Repositories\ArticleRepositoryInterface;
 use Exception;
 
-class UpdateArticleUseCase
+class DeleteArticleUseCase
 {
     private ArticleRepositoryInterface $articleRepository;
 
@@ -17,7 +17,7 @@ class UpdateArticleUseCase
     /**
      * @throws Exception
      */
-    public function execute(int $id, string $title, string $description): void
+    public function execute(int $id): void
     {
         $article = $this->articleRepository->findById($id);
 
@@ -25,8 +25,6 @@ class UpdateArticleUseCase
             throw new Exception("Article with ID {$id} not found.");
         }
 
-        $updatedArticle = new Article($title, $description, $id);
-
-        $this->articleRepository->update($updatedArticle);
+        $this->articleRepository->delete($id);
     }
 }

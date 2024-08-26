@@ -4,5 +4,3 @@ CREATE TABLE IF NOT EXISTS users (
      password VARCHAR(255) NOT NULL,
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-INSERT INTO users (username, password) VALUES ('admin', '$2y$10$E19dVt8URW4R7fQZqgfVBu2nd0/Y4e4yZZ1XJ6xuN9QYlMKHkXOTu');

@@ -2,7 +2,7 @@
 
 namespace App\Article\Infrastructure;
 
-use App\Article\Presentation\ArticleViewModel;
+use App\Article\Infrastructure\Presenter\ArticleViewModel;
 
 interface ArticleListPresenterInterface
 {

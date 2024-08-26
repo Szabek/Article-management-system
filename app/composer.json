@@ -12,7 +12,8 @@
   "autoload": {
     "psr-4": {
       "App\\": "src/",
-      "Szabek\\Framework\\": "framework/"
+      "Szabek\\Framework\\": "framework/",
+      "Config\\": "config/"
     }
   },
   "require-dev": {

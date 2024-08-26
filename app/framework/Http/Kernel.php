@@ -5,15 +5,18 @@ namespace Szabek\Framework\Http;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
 use Szabek\Framework\Container;
+use Szabek\Framework\Http\Middleware\Middleware;
 use function FastRoute\simpleDispatcher;
 
 class Kernel
 {
     private Container $container;
+    private array $middlewares = [];
 
-    public function __construct(Container $container)
+    public function __construct(Container $container, array $middlewares = [])
     {
         $this->container = $container;
+        $this->middlewares = $middlewares;
     }
 
     public function handle(Request $request): Response
@@ -41,11 +44,32 @@ class Kernel
                 $vars = $routeInfo[2];
 
                 $controller = $this->container->get($controllerName);
-                $response = call_user_func_array([$controller, $method], $vars);
+
+                array_unshift($vars, $request);
+
+                $response = $this->handleMiddleware($request, function ($request) use ($controller, $method, $vars) {
+                    return call_user_func_array([$controller, $method], $vars);
+                });
 
                 return $response;
             default:
                 return new Response('500 Internal Server Error', 500);
         }
+    }
+
+    private function handleMiddleware(Request $request, callable $next): Response
+    {
+        if (empty($this->middlewares)) {
+            return $next($request);
+        }
+
+        $middleware = array_shift($this->middlewares);
+
+        /** @var Middleware $middlewareInstance */
+        $middlewareInstance = $this->container->get($middleware);
+
+        return $middlewareInstance->process($request, function ($request) use ($next) {
+            return $this->handleMiddleware($request, $next);
+        });
     }
 }
