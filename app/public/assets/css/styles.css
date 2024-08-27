@@ -6,27 +6,25 @@
 }
 
 body {
-    background-color: #ffffff;
     background-image: url('/assets/images/waves.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    color: #333;
+    color: #0B3C80;
 }
 
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 10px auto;
     padding: 20px;
-    background: white;
     border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #0B3C80;
     font-size: 24px;
 }
 
@@ -38,6 +36,7 @@ h2 {
 
 #article-form input[type="text"],
 #article-form textarea {
+    background: rgba(255, 255, 255, 0.5);
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -49,7 +48,7 @@ h2 {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #1d4ed8;
+    background-color: #0B3C80;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -65,11 +64,14 @@ h2 {
 }
 
 .article-list li {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #e2e8f0;
+    margin: 5px 0;
+    border: 1px solid #e2e8f0;
 }
 
 .article-list li span {
@@ -79,7 +81,7 @@ h2 {
 
 .edit-article, .delete-article {
     cursor: pointer;
-    color: #1d4ed8;
+    color: #0B3C80;
 }
 
 .edit-article:hover, .delete-article:hover {
@@ -108,7 +110,7 @@ h2 {
     display: block;
     text-align: center;
     padding: 10px;
-    background-color: #1d4ed8;
+    background-color: #0B3C80;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -124,7 +126,6 @@ h2 {
     max-width: 400px;
     margin: 100px auto;
     padding: 20px;
-    background: white;
     border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -148,7 +149,7 @@ h2 {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #1d4ed8;
+    background-color: #0B3C80;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -212,4 +213,15 @@ h2 {
 .logo-container img {
     max-width: 100%;
     height: auto;
+}
+
+.article-title {
+    font-weight: bold;
+}
+
+.article-title,
+.article-description {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }

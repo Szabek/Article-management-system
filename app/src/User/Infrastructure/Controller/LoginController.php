@@ -53,6 +53,11 @@ class LoginController
     public function logout(): Response
     {
         unset($_SESSION['user']);
-        return new Response('Logged out successfully', 302, ['Location' => '/login']);
+
+        session_destroy();
+
+        return new Response(json_encode(['message' => 'Logged out successfully']), 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 }

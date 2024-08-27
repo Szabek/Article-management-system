@@ -8,8 +8,8 @@ export function renderArticleList(articles) {
         articles.forEach(article => {
             const articleElement = `
                 <li>
-                    <span>${article.title}</span>
-                    <span>${article.description}</span>
+                    <span class="article-title">${article.title}</span>
+                    <span class="article-description">${article.description}</span>
                     <a href="#" class="edit-article" data-id="${article.id}" data-title="${article.title}" data-description="${article.description}">
                         <img src="/assets/images/pencil.svg" alt="Edit">
                     </a>
