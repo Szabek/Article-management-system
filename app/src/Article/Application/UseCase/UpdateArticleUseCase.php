@@ -15,19 +15,23 @@ class UpdateArticleUseCase
         $this->articleRepository = $articleRepository;
     }
 
-    /**
-     * @throws Exception
-     */
-    public function execute(int $id, string $title, string $description): void
+    public function execute(UpdateArticleRequest $request): UseCaseResponse
     {
-        $article = $this->articleRepository->findById($id);
+        try {
+            $article = $this->articleRepository->findById($request->id);
 
-        if ($article === null) {
-            throw new Exception("Article with ID {$id} not found.");
+            if (!$article) {
+                return new UseCaseResponse(false, 'Article not found');
+            }
+
+            $article->setTitle($request->title);
+            $article->setDescription($request->description);
+
+            $this->articleRepository->update($article);
+
+            return new UseCaseResponse(true, 'Article updated successfully', $article);
+        } catch (Exception $e) {
+            return new UseCaseResponse(false, 'Failed to update article: ' . $e->getMessage());
         }
-
-        $updatedArticle = new Article($title, $description, $id);
-
-        $this->articleRepository->update($updatedArticle);
     }
 }

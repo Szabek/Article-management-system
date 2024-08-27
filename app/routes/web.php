@@ -7,6 +7,9 @@ return [
     ['GET', '/', [LoginController::class, 'index']],
     ['GET', '/login', [LoginController::class, 'index']],
     ['POST', '/login', [LoginController::class, 'login']],
-    ['GET', '/articles', [ArticleController::class, 'index']],
-    ['GET', '/articles/{id:\d+}', [ArticleController::class, 'show']],
+    ['GET', '/articles', [ArticleController::class, 'listHtml']],
+    ['GET', '/api/articles', [ArticleController::class, 'listJson']],
+    ['POST', '/api/articles', [ArticleController::class, 'create']],
+    ['PUT', '/api/articles/{id:\d+}', [ArticleController::class, 'update']],
+    ['DELETE', '/api/articles/{id:\d+}', [ArticleController::class, 'delete']],
 ];

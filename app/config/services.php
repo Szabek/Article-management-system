@@ -1,8 +1,14 @@
 <?php
 
-use App\Article\Infrastructure\ArticleListPresenterInterface;
+use App\Article\Application\UseCase\CreateArticleUseCase;
+use App\Article\Application\UseCase\DeleteArticleUseCase;
+use App\Article\Application\UseCase\UpdateArticleUseCase;
+use App\Article\Domain\Repositories\ArticleRepository;
+use App\Article\Domain\Repositories\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Controller\ArticleController;
-use App\Article\Infrastructure\Presenter\ArticleListPresenter;
+use App\Article\Infrastructure\Presenter\ArticlePresenter;
+use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
+use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
 use App\User\Application\Services\PasswordService;
 use App\User\Application\UseCase\LoginPresenterInterface;
 use App\User\Application\UseCase\LoginUserUseCase;
@@ -68,12 +74,44 @@ return function (Container $container) {
         );
     });
 
-    $container->set(ArticleListPresenterInterface::class, function ($c) {
-        return new ArticleListPresenter($c->get(Environment::class));
+    $container->set(ArticlePresenter::class, function ($c) {
+        return new ArticlePresenter($c->get(Environment::class));
+    });
+
+    $container->set(JsonArticleListPresenter::class, function ($c) {
+        return new JsonArticleListPresenter();
+    });
+
+    $container->set(JsonArticlePresenter::class, function ($c) {
+        return new JsonArticlePresenter();
+    });
+
+    $container->set(CreateArticleUseCase::class, function ($c) {
+        return new CreateArticleUseCase($c->get(ArticleRepositoryInterface::class));
+    });
+
+    $container->set(UpdateArticleUseCase::class, function ($c) {
+        return new UpdateArticleUseCase($c->get(ArticleRepositoryInterface::class));
+    });
+
+    $container->set(ArticleRepositoryInterface::class, function ($c) {
+        return new ArticleRepository($c->get(PDO::class));
+    });
+
+    $container->set(DeleteArticleUseCase::class, function ($c) {
+        return new DeleteArticleUseCase($c->get(ArticleRepositoryInterface::class));
     });
 
     $container->set(ArticleController::class, function ($c) {
-        return new ArticleController($c->get(ArticleListPresenterInterface::class));
+        return new ArticleController(
+            $c->get(CreateArticleUseCase::class),
+            $c->get(UpdateArticleUseCase::class),
+            $c->get(ArticlePresenter::class),
+            $c->get(JsonArticlePresenter::class),
+            $c->get(JsonArticleListPresenter::class),
+            $c->get(ArticleRepositoryInterface::class),
+            $c->get(DeleteArticleUseCase::class),
+        );
     });
 
     $container->set(AuthMiddleware::class, function () {

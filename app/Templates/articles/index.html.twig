@@ -1,19 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All Articles{% endblock %}
-
 {% block content %}
-    <div class="articles-container">
-        <h1>All Articles</h1>
-        <ul>
-            {% for article in articles %}
-                <li>
-                    <a href="/articles/{{ article.id }}">{{ article.title }}</a>
-                    <p>{{ article.description }}</p>
-                </li>
-            {% else %}
-                <li>No articles available.</li>
-            {% endfor %}
+    <div class="container">
+        <h2 id="all-news-header" style="display: none;">All News</h2>
+        <ul class="article-list" id="article-list">
+            <!-- List will be rendered here via JavaScript -->
         </ul>
+
+        <h2 id="form-header">
+            <span>Create News</span>
+            <button id="cancel-edit-button" type="button" style="display:none;">
+                <img src="/assets/images/close.svg" alt="Cancel Edit">
+            </button>
+        </h2>
+        <form id="article-form" method="post" action="/api/articles" data-method="POST">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="">
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <button id="form-submit-button" type="submit">Create</button>
+        </form>
+        <a href="/logout" class="logout-btn">Logout</a>
     </div>
+    <script type="module" src="/assets/js/main.js"></script>
 {% endblock %}

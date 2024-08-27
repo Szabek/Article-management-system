@@ -14,17 +14,13 @@ class DeleteArticleUseCase
         $this->articleRepository = $articleRepository;
     }
 
-    /**
-     * @throws Exception
-     */
-    public function execute(int $id): void
+    public function execute(int $id): UseCaseResponse
     {
-        $article = $this->articleRepository->findById($id);
-
-        if ($article === null) {
-            throw new Exception("Article with ID {$id} not found.");
+        try {
+            $this->articleRepository->delete($id);
+            return new UseCaseResponse(true, 'Article deleted successfully');
+        } catch (Exception $e) {
+            return new UseCaseResponse(false, 'Failed to delete article: ' . $e->getMessage());
         }
-
-        $this->articleRepository->delete($id);
     }
 }

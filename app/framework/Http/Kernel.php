@@ -45,10 +45,10 @@ class Kernel
 
                 $controller = $this->container->get($controllerName);
 
-                array_unshift($vars, $request);
+                $params = array_merge([$request], array_values($vars));
 
-                $response = $this->handleMiddleware($request, function ($request) use ($controller, $method, $vars) {
-                    return call_user_func_array([$controller, $method], $vars);
+                $response = $this->handleMiddleware($request, function ($request) use ($controller, $method, $params) {
+                    return call_user_func_array([$controller, $method], $params);
                 });
 
                 return $response;

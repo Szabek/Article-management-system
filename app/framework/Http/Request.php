@@ -10,6 +10,7 @@ readonly class Request
         public array $cookies,
         public array $files,
         public array $server,
+        public ?array $body = null,
     )
     {
 
@@ -17,7 +18,15 @@ readonly class Request
 
     public static function createFromGlobals(): static
     {
-        return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+        $body = null;
+        if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
+            $input = file_get_contents('php://input');
+            $body = json_decode($input, true);
+        } else {
+            $body = $_POST;
+        }
+
+        return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER, $body);
     }
 
     public function getPathInfo(): string

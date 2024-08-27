@@ -21,7 +21,7 @@ class ArticleRepository implements ArticleRepositoryInterface
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            return new Article($row['title'], $row['description'], $row['id']);
+            return new Article($row['id'], $row['title'], $row['description']);
         }
 
         return null;
@@ -33,7 +33,7 @@ class ArticleRepository implements ArticleRepositoryInterface
         $articles = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $articles[] = new Article($row['title'], $row['description'], $row['id']);
+            $articles[] = new Article($row['id'], $row['title'], $row['description'],);
         }
 
         return $articles;
@@ -41,18 +41,13 @@ class ArticleRepository implements ArticleRepositoryInterface
 
     public function save(Article $article): void
     {
-        if ($article->getId() !== null) {
-            throw new \InvalidArgumentException('Article already has an ID and cannot be saved as a new entry.');
-        }
-
         $stmt = $this->pdo->prepare('INSERT INTO articles (title, description) VALUES (:title, :description)');
         $stmt->execute([
             'title' => $article->getTitle(),
-            'description' => $article->getDescription()
+            'description' => $article->getDescription(),
         ]);
 
-        // Ustawienie ID nowo dodanego artykułu na obiekcie
-        $article->setId($this->pdo->lastInsertId());
+        $article->setId((int) $this->pdo->lastInsertId());
     }
 
     public function update(Article $article): void
