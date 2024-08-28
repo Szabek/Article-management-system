@@ -4,6 +4,11 @@
 
 {% block content %}
     <div class="login-container">
+        {% if viewModel.error is defined %}
+            <div class="error-message">
+                {{ viewModel.error }}
+            </div>
+        {% endif %}
         <form method="post" action="/login">
             <div>
                 <label for="username">Username</label>

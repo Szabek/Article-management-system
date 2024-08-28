@@ -229,3 +229,9 @@ h2 {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
