@@ -22,9 +22,14 @@ class Kernel
     public function handle(Request $request): Response
     {
         $dispatcher = simpleDispatcher(function (RouteCollector $routeCollector) {
-            $routes = include BASE_PATH . '/routes/web.php';
+            $webRoutes = include BASE_PATH . '/routes/web.php';
+            $apiRoutes = include BASE_PATH . '/routes/api.php';
 
-            foreach ($routes as $route) {
+            foreach ($webRoutes as $route) {
+                $routeCollector->addRoute(...$route);
+            }
+
+            foreach ($apiRoutes as $route) {
                 $routeCollector->addRoute(...$route);
             }
         });
