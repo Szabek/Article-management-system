@@ -2,20 +2,20 @@
 
 namespace App\User\Infrastructure\Repository;
 
-use App\User\Application\Services\PasswordService;
 use App\User\Domain\Entity\User;
+use App\User\Domain\PasswordHasherInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use PDO;
 
 class UserRepository implements UserRepositoryInterface
 {
     private PDO $pdo;
-    private PasswordService $passwordService;
+    private PasswordHasherInterface $passwordHasher;
 
-    public function __construct(PDO $pdo, PasswordService $passwordService)
+    public function __construct(PDO $pdo, PasswordHasherInterface $passwordHasher)
     {
         $this->pdo = $pdo;
-        $this->passwordService = $passwordService;
+        $this->passwordHasher = $passwordHasher;
     }
 
     public function findById(int $id): ?User
@@ -50,14 +50,14 @@ class UserRepository implements UserRepositoryInterface
             $stmt = $this->pdo->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
             $stmt->execute([
                 'username' => $user->getUsername(),
-                'password' => $this->passwordService->hashPassword($user->getPassword())
+                'password' => $this->passwordHasher->hashPassword($user->getPassword())
             ]);
-            $user->setId((int) $this->pdo->lastInsertId());
+            $user->setId((int)$this->pdo->lastInsertId());
         } else {
             $stmt = $this->pdo->prepare('UPDATE users SET username = :username, password = :password WHERE id = :id');
             $stmt->execute([
                 'username' => $user->getUsername(),
-                'password' => $this->passwordService->hashPassword($user->getPassword()),
+                'password' => $this->passwordHasher->hashPassword($user->getPassword()),
                 'id' => $user->getId()
             ]);
         }

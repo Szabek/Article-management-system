@@ -9,11 +9,12 @@ use App\Article\Infrastructure\Presenter\ArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
 use App\Article\Infrastructure\Repository\ArticleRepository;
-use App\User\Application\Services\PasswordService;
+use App\User\Application\Services\PasswordChecker;
 use App\User\Application\UseCase\Login\LoginUserUseCase;
 use App\User\Application\UseCase\Login\LoginUserUseCaseInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use App\User\Infrastructure\Controller\LoginController;
+use App\User\Infrastructure\Hasher\PasswordHasher;
 use App\User\Infrastructure\LoginPresenterInterface;
 use App\User\Infrastructure\Presenter\LoginPresenter;
 use App\User\Infrastructure\Repository\UserRepository;
@@ -45,21 +46,25 @@ return function (Container $container) {
         return new PDO($dsn, $config->get('db_user'), $config->get('db_password'));
     });
 
-    $container->set(PasswordService::class, function () {
-        return new PasswordService();
+    $container->set(PasswordChecker::class, function () {
+        return new PasswordChecker();
+    });
+
+    $container->set(PasswordHasher::class, function () {
+        return new PasswordHasher();
     });
 
     $container->set(UserRepositoryInterface::class, function ($c) {
         return new UserRepository(
             $c->get(PDO::class),
-            $c->get(PasswordService::class)
+            $c->get(PasswordHasher::class)
         );
     });
 
     $container->set(LoginUserUseCaseInterface::class, function ($c) {
         return new LoginUserUseCase(
             $c->get(UserRepositoryInterface::class),
-            $c->get(PasswordService::class)
+            $c->get(PasswordChecker::class)
         );
     });
 

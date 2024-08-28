@@ -2,25 +2,25 @@
 
 namespace App\User\Application\UseCase\Login;
 
-use App\User\Application\Services\PasswordService;
+use App\User\Application\Services\PasswordChecker;
 use App\User\Domain\Repository\UserRepositoryInterface;
 
 class LoginUserUseCase implements LoginUserUseCaseInterface
 {
     private UserRepositoryInterface $userRepository;
-    private PasswordService $passwordService;
+    private PasswordChecker $passwordChecker;
 
-    public function __construct(UserRepositoryInterface $userRepository, PasswordService $passwordService)
+    public function __construct(UserRepositoryInterface $userRepository, PasswordChecker $passwordChecker)
     {
         $this->userRepository = $userRepository;
-        $this->passwordService = $passwordService;
+        $this->passwordChecker = $passwordChecker;
     }
 
     public function execute(LoginUserRequest $request): LoginUserResponse
     {
         $user = $this->userRepository->findByUsername($request->username);
 
-        if ($user && $this->passwordService->verifyPassword($request->password, $user->getPassword())) {
+        if ($user && $this->passwordChecker->verifyPassword($request->password, $user->getPassword())) {
             return new LoginUserResponse(true);
         }
 
