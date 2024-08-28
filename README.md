@@ -68,8 +68,6 @@ article-management-system/
 │   │   └── services.php         # Service registration for the application
 │   ├── database/
 │   │   └── migrations/          # Database migration files
-│   │       ├── create_articles_table.sql
-│   │       └── create_users_table.sql
 │   ├── framework/               # Application framework components
 │   │   ├── Http/
 │   │   │   └── Container.php    # Dependency Injection container for the application
