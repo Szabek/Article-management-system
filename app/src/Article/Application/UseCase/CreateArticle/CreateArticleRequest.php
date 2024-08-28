@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Article\Application\UseCase;
+namespace App\Article\Application\UseCase\CreateArticle;
 
 class CreateArticleRequest
 {

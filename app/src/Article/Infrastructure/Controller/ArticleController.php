@@ -2,14 +2,14 @@
 
 namespace App\Article\Infrastructure\Controller;
 
-use App\Article\Application\UseCase\CreateArticleRequest;
-use App\Article\Application\UseCase\CreateArticleUseCase;
-use App\Article\Application\UseCase\DeleteArticleUseCase;
-use App\Article\Application\UseCase\UpdateArticleRequest;
-use App\Article\Application\UseCase\UpdateArticleUseCase;
-use App\Article\Application\UseCase\UseCaseResponse;
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
-use App\Article\Infrastructure\Presenter\ArticlePresenter;
+use App\Article\Application\UseCase\ArticleListResponse;
+use App\Article\Application\UseCase\CreateArticle\CreateArticleRequest;
+use App\Article\Application\UseCase\CreateArticle\CreateArticleUseCase;
+use App\Article\Application\UseCase\DeleteArticle\DeleteArticleUseCase;
+use App\Article\Application\UseCase\UpdateArticle\UpdateArticleRequest;
+use App\Article\Application\UseCase\UpdateArticle\UpdateArticleUseCase;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
+use App\Article\Infrastructure\Presenter\HtmlArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
 use Szabek\Framework\Http\Request;
@@ -19,7 +19,7 @@ class ArticleController
 {
     private CreateArticleUseCase $createArticleUseCase;
     private UpdateArticleUseCase $updateArticleUseCase;
-    private ArticlePresenter $htmlArticlePresenter;
+    private HtmlArticlePresenter $htmlArticlePresenter;
     private JsonArticlePresenter $jsonArticlePresenter;
     private JsonArticleListPresenter $jsonArticleListPresenter;
     private ArticleRepositoryInterface $articleRepository;
@@ -29,7 +29,7 @@ class ArticleController
     public function __construct(
         CreateArticleUseCase       $createArticleUseCase,
         UpdateArticleUseCase       $updateArticleUseCase,
-        ArticlePresenter           $htmlArticlePresenter,
+        HtmlArticlePresenter       $htmlArticlePresenter,
         JsonArticlePresenter       $jsonArticlePresenter,
         JsonArticleListPresenter   $jsonArticleListPresenter,
         ArticleRepositoryInterface $articleRepository,
@@ -47,7 +47,7 @@ class ArticleController
 
     public function listHtml(Request $request): Response
     {
-        $content = $this->htmlArticlePresenter->present(new UseCaseResponse(true, ''));
+        $content = $this->htmlArticlePresenter->present(new ArticleListResponse(true, ''));
         return new Response($content, 200, ['Content-Type' => 'text/html']);
     }
 
@@ -55,7 +55,7 @@ class ArticleController
     {
         $articles = $this->articleRepository->findAll();
 
-        $response = new UseCaseResponse(true, 'Articles retrieved successfully', $articles);
+        $response = new ArticleListResponse(true, 'Articles retrieved successfully', $articles);
 
         $content = $this->jsonArticleListPresenter->present($response);
 

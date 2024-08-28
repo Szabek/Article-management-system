@@ -2,11 +2,11 @@
 
 namespace App\Article\Infrastructure\Presenter;
 
-use App\Article\Application\UseCase\UseCaseResponse;
+use App\Article\Application\UseCase\ArticleListResponse;
 use App\Article\Infrastructure\ArticlePresenterInterface;
 use Twig\Environment;
 
-class ArticlePresenter implements ArticlePresenterInterface
+class HtmlArticlePresenter implements ArticlePresenterInterface
 {
     private Environment $twig;
 
@@ -15,7 +15,7 @@ class ArticlePresenter implements ArticlePresenterInterface
         $this->twig = $twig;
     }
 
-    public function present(UseCaseResponse $response): string
+    public function present(ArticleListResponse $response): string
     {
         if ($response->success) {
             return $this->twig->render('articles/index.html.twig', [

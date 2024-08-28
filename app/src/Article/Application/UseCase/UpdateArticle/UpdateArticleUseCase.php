@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Article\Application\UseCase;
+namespace App\Article\Application\UseCase\UpdateArticle;
 
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
-use App\Article\Domain\UseCase\Article;
+use App\Article\Application\UseCase\ArticleResponse;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use Exception;
 
 class UpdateArticleUseCase
@@ -15,13 +15,13 @@ class UpdateArticleUseCase
         $this->articleRepository = $articleRepository;
     }
 
-    public function execute(UpdateArticleRequest $request): UseCaseResponse
+    public function execute(UpdateArticleRequest $request): ArticleResponse
     {
         try {
             $article = $this->articleRepository->findById($request->id);
 
             if (!$article) {
-                return new UseCaseResponse(false, 'Article not found');
+                return new ArticleResponse(false, 'Article not found');
             }
 
             $article->setTitle($request->title);
@@ -29,9 +29,9 @@ class UpdateArticleUseCase
 
             $this->articleRepository->update($article);
 
-            return new UseCaseResponse(true, 'Article updated successfully', $article);
+            return new ArticleResponse(true, 'Article updated successfully', $article);
         } catch (Exception $e) {
-            return new UseCaseResponse(false, 'Failed to update article: ' . $e->getMessage());
+            return new ArticleResponse(false, 'Failed to update article: ' . $e->getMessage());
         }
     }
 }

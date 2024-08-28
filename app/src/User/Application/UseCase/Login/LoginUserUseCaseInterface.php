@@ -1,8 +1,6 @@
 <?php
 
-namespace App\User\Application\UseCase;
-
-use App\User\Application\Services\PasswordService;
+namespace App\User\Application\UseCase\Login;
 
 interface LoginUserUseCaseInterface
 {

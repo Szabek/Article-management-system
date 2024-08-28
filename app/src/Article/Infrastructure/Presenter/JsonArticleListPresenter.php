@@ -2,31 +2,26 @@
 
 namespace App\Article\Infrastructure\Presenter;
 
-use App\Article\Application\UseCase\UseCaseResponse;
+use App\Article\Application\UseCase\ArticleListResponse;
+use App\Article\Domain\Entity\Article;
 use App\Article\Infrastructure\ArticlePresenterInterface;
 
 class JsonArticleListPresenter implements ArticlePresenterInterface
 {
-    public function present(UseCaseResponse $response): string
+    public function present(ArticleListResponse $response): string
     {
-        $formattedData = array_map(function ($article) {
-            $viewModel = new ArticleViewModel(
-                $article->getId(),
-                $article->getTitle(),
-                $article->getDescription()
-            );
-
+        $mappedData = array_map(function (Article $article) {
             return [
-                'id' => $viewModel->id,
-                'title' => $viewModel->title,
-                'description' => $viewModel->description,
+                'id' => $article->getId(),
+                'title' => $article->getTitle(),
+                'description' => $article->getDescription(),
             ];
         }, $response->data);
 
         return json_encode([
             'success' => $response->success,
             'message' => $response->message,
-            'data' => $formattedData
+            'data' => $mappedData
         ]);
     }
 }

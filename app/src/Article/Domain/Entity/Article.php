@@ -8,7 +8,7 @@ class Article
     private string $title;
     private string $description;
 
-    public function __construct(int $id, string $title, string $description)
+    public function __construct(?int $id, string $title, string $description)
     {
         $this->id = $id;
         $this->title = $title;

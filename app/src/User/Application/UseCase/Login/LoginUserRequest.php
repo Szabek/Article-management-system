@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Application\UseCase;
+namespace App\User\Application\UseCase\Login;
 
 class LoginUserRequest
 {

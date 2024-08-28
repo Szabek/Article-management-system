@@ -1,22 +1,23 @@
 <?php
 
-use App\Article\Application\UseCase\CreateArticleUseCase;
-use App\Article\Application\UseCase\DeleteArticleUseCase;
-use App\Article\Application\UseCase\UpdateArticleUseCase;
-use App\Article\Domain\Repositories\ArticleRepository;
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
+use App\Article\Application\UseCase\CreateArticle\CreateArticleUseCase;
+use App\Article\Application\UseCase\DeleteArticle\DeleteArticleUseCase;
+use App\Article\Application\UseCase\UpdateArticle\UpdateArticleUseCase;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Controller\ArticleController;
-use App\Article\Infrastructure\Presenter\ArticlePresenter;
+use App\Article\Infrastructure\Presenter\HtmlArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
-use App\User\Application\Services\PasswordService;
-use App\User\Application\UseCase\LoginPresenterInterface;
-use App\User\Application\UseCase\LoginUserUseCase;
-use App\User\Application\UseCase\LoginUserUseCaseInterface;
-use App\User\Domain\Repository\UserRepository;
+use App\Article\Infrastructure\Repository\ArticleRepository;
+use App\User\Application\Services\PasswordChecker;
+use App\User\Application\UseCase\Login\LoginUserUseCase;
+use App\User\Application\UseCase\Login\LoginUserUseCaseInterface;
 use App\User\Domain\Repository\UserRepositoryInterface;
 use App\User\Infrastructure\Controller\LoginController;
+use App\User\Infrastructure\Hasher\PasswordHasher;
+use App\User\Infrastructure\LoginPresenterInterface;
 use App\User\Infrastructure\Presenter\LoginPresenter;
+use App\User\Infrastructure\Repository\UserRepository;
 use Config\Config;
 use Szabek\Framework\Container;
 use Szabek\Framework\Http\Middleware\AuthMiddleware;
@@ -45,21 +46,25 @@ return function (Container $container) {
         return new PDO($dsn, $config->get('db_user'), $config->get('db_password'));
     });
 
-    $container->set(PasswordService::class, function () {
-        return new PasswordService();
+    $container->set(PasswordChecker::class, function () {
+        return new PasswordChecker();
+    });
+
+    $container->set(PasswordHasher::class, function () {
+        return new PasswordHasher();
     });
 
     $container->set(UserRepositoryInterface::class, function ($c) {
         return new UserRepository(
             $c->get(PDO::class),
-            $c->get(PasswordService::class)
+            $c->get(PasswordHasher::class)
         );
     });
 
     $container->set(LoginUserUseCaseInterface::class, function ($c) {
         return new LoginUserUseCase(
             $c->get(UserRepositoryInterface::class),
-            $c->get(PasswordService::class)
+            $c->get(PasswordChecker::class)
         );
     });
 
@@ -74,8 +79,8 @@ return function (Container $container) {
         );
     });
 
-    $container->set(ArticlePresenter::class, function ($c) {
-        return new ArticlePresenter($c->get(Environment::class));
+    $container->set(HtmlArticlePresenter::class, function ($c) {
+        return new HtmlArticlePresenter($c->get(Environment::class));
     });
 
     $container->set(JsonArticleListPresenter::class, function ($c) {
@@ -106,7 +111,7 @@ return function (Container $container) {
         return new ArticleController(
             $c->get(CreateArticleUseCase::class),
             $c->get(UpdateArticleUseCase::class),
-            $c->get(ArticlePresenter::class),
+            $c->get(HtmlArticlePresenter::class),
             $c->get(JsonArticlePresenter::class),
             $c->get(JsonArticleListPresenter::class),
             $c->get(ArticleRepositoryInterface::class),

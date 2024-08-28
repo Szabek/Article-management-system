@@ -83,7 +83,7 @@ article-management-system/
 │           ├── Application/     # Application logic for users
 │           ├── Domain/          # Domain logic for users
 │           └── Infrastructure/  # Infrastructure for the user module
-├── Templates/
+├── templates/
 │   ├── articles/                # Article templates
 │   ├── user/                    # User templates
 │   └── base.html.twig           # Main application template

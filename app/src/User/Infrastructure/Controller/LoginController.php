@@ -2,13 +2,10 @@
 
 namespace App\User\Infrastructure\Controller;
 
-use App\User\Application\UseCase\LoginPresenterInterface;
-use App\User\Application\UseCase\LoginUserRequest;
-use App\User\Application\UseCase\LoginUserResponse;
-use App\User\Application\UseCase\LoginUserUseCase;
-use App\User\Application\UseCase\LoginUserUseCaseInterface;
-use App\User\Infrastructure\Presenter\LoginPresenter;
-use App\User\Infrastructure\Presenter\LoginViewModel;
+use App\User\Application\UseCase\Login\LoginUserRequest;
+use App\User\Application\UseCase\Login\LoginUserResponse;
+use App\User\Application\UseCase\Login\LoginUserUseCaseInterface;
+use App\User\Infrastructure\LoginPresenterInterface;
 use Szabek\Framework\Http\Request;
 use Szabek\Framework\Http\Response;
 

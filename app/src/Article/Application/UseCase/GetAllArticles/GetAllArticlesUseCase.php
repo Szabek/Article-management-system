@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Article\Application\UseCase;
+namespace App\Article\Application\UseCase\GetAllArticles;
 
 use App\Article\Domain\Entity\Article;
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
 
 class GetAllArticlesUseCase
 {
