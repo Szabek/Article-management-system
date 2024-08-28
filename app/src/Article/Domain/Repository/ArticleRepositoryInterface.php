@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Article\Domain\Repositories;
+namespace App\Article\Domain\Repository;
 
 use App\Article\Domain\Entity\Article;
 

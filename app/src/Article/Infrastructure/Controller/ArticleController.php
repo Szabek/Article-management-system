@@ -8,7 +8,7 @@ use App\Article\Application\UseCase\DeleteArticleUseCase;
 use App\Article\Application\UseCase\UpdateArticleRequest;
 use App\Article\Application\UseCase\UpdateArticleUseCase;
 use App\Article\Application\UseCase\UseCaseResponse;
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Presenter\ArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;

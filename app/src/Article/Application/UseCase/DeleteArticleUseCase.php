@@ -2,7 +2,7 @@
 
 namespace App\Article\Application\UseCase;
 
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use Exception;
 
 class DeleteArticleUseCase

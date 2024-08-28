@@ -3,12 +3,12 @@
 use App\Article\Application\UseCase\CreateArticleUseCase;
 use App\Article\Application\UseCase\DeleteArticleUseCase;
 use App\Article\Application\UseCase\UpdateArticleUseCase;
-use App\Article\Domain\Repositories\ArticleRepository;
-use App\Article\Domain\Repositories\ArticleRepositoryInterface;
+use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Controller\ArticleController;
 use App\Article\Infrastructure\Presenter\ArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
+use App\Article\Infrastructure\Repository\ArticleRepository;
 use App\User\Application\Services\PasswordService;
 use App\User\Application\UseCase\LoginPresenterInterface;
 use App\User\Application\UseCase\LoginUserUseCase;

@@ -22,7 +22,6 @@ class JsonArticlePresenter
                 'description' => $viewModel->description,
             ];
         } else {
-            // Jeśli $response->data jest null, ustaw $formattedData na null
             $formattedData = null;
         }
 
