@@ -4,7 +4,6 @@ namespace App\Article\Application\UseCase\Update;
 
 use App\Article\Application\UseCase\ArticleResponse;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
-use App\Article\Domain\UseCase\Article;
 use Exception;
 
 class UpdateArticleUseCase

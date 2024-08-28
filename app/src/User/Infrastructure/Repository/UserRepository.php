@@ -1,9 +1,10 @@
 <?php
 
-namespace App\User\Domain\Repository;
+namespace App\User\Infrastructure\Repository;
 
 use App\User\Application\Services\PasswordService;
 use App\User\Domain\Entity\User;
+use App\User\Domain\Repository\UserRepositoryInterface;
 use PDO;
 
 class UserRepository implements UserRepositoryInterface

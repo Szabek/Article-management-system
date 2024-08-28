@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Application\UseCase;
+namespace App\User\Application\UseCase\Login;
 
 use App\User\Application\Services\PasswordService;
 use App\User\Domain\Repository\UserRepositoryInterface;

@@ -1,6 +1,8 @@
 <?php
 
-namespace App\User\Application\UseCase;
+namespace App\User\Infrastructure;
+
+use App\User\Application\UseCase\Login\LoginUserResponse;
 
 interface LoginPresenterInterface
 {

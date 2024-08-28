@@ -2,8 +2,8 @@
 
 namespace App\User\Infrastructure\Presenter;
 
-use App\User\Application\UseCase\LoginPresenterInterface;
-use App\User\Application\UseCase\LoginUserResponse;
+use App\User\Application\UseCase\Login\LoginUserResponse;
+use App\User\Infrastructure\LoginPresenterInterface;
 use Twig\Environment;
 
 class LoginPresenter implements LoginPresenterInterface
