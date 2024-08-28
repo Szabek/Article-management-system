@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Article\Application\UseCase;
+namespace App\Article\Application\UseCase\Create;
 
+use App\Article\Application\UseCase\ArticleResponse;
 use App\Article\Domain\Entity\Article;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use Exception;
@@ -15,15 +16,15 @@ class CreateArticleUseCase
         $this->articleRepository = $articleRepository;
     }
 
-    public function execute(CreateArticleRequest $request): UseCaseResponse
+    public function execute(CreateArticleRequest $request): ArticleResponse
     {
         try {
-            $article = new Article((int)null, $request->title, $request->description);
+            $article = new Article(null, $request->title, $request->description);
             $this->articleRepository->save($article);
 
-            return new UseCaseResponse(true, 'Article created successfully', $article);
+            return new ArticleResponse(true, 'Article created successfully', $article);
         } catch (Exception $e) {
-            return new UseCaseResponse(false, $e->getMessage());
+            return new ArticleResponse(false, $e->getMessage());
         }
     }
 }

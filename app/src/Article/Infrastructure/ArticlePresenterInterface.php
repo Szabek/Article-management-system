@@ -2,9 +2,9 @@
 
 namespace App\Article\Infrastructure;
 
-use App\Article\Application\UseCase\UseCaseResponse;
+use App\Article\Application\UseCase\ArticleListResponse;
 
 interface ArticlePresenterInterface
 {
-    public function present(UseCaseResponse $response): string;
+    public function present(ArticleListResponse $response): string;
 }

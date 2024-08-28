@@ -2,33 +2,28 @@
 
 namespace App\Article\Infrastructure\Presenter;
 
-use App\Article\Application\UseCase\UseCaseResponse;
-use App\Article\Domain\Entity\Article;
+use App\Article\Application\UseCase\ArticleResponse;
 
 class JsonArticlePresenter
 {
-    public function present(UseCaseResponse $response): string
+    public function present(ArticleResponse $response): string
     {
-        if ($response->data instanceof Article) {
-            $viewModel = new ArticleViewModel(
-                $response->data->getId(),
-                $response->data->getTitle(),
-                $response->data->getDescription()
-            );
+        $article = $response->article;
 
-            $formattedData = [
-                'id' => $viewModel->id,
-                'title' => $viewModel->title,
-                'description' => $viewModel->description,
+        $articleView = null;
+
+        if (null !== $article) {
+            $articleView = [
+                'id' => $article->getId(),
+                'title' => $article->getTitle(),
+                'description' => $article->getDescription(),
             ];
-        } else {
-            $formattedData = null;
         }
 
         return json_encode([
             'success' => $response->success,
             'message' => $response->message,
-            'data' => $formattedData
+            'data' => $articleView
         ]);
     }
 }

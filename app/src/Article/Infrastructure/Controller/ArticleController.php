@@ -2,12 +2,12 @@
 
 namespace App\Article\Infrastructure\Controller;
 
-use App\Article\Application\UseCase\CreateArticleRequest;
-use App\Article\Application\UseCase\CreateArticleUseCase;
-use App\Article\Application\UseCase\DeleteArticleUseCase;
-use App\Article\Application\UseCase\UpdateArticleRequest;
-use App\Article\Application\UseCase\UpdateArticleUseCase;
-use App\Article\Application\UseCase\UseCaseResponse;
+use App\Article\Application\UseCase\ArticleListResponse;
+use App\Article\Application\UseCase\Create\CreateArticleRequest;
+use App\Article\Application\UseCase\Create\CreateArticleUseCase;
+use App\Article\Application\UseCase\Delete\DeleteArticleUseCase;
+use App\Article\Application\UseCase\Update\UpdateArticleRequest;
+use App\Article\Application\UseCase\Update\UpdateArticleUseCase;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Presenter\ArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
@@ -47,7 +47,7 @@ class ArticleController
 
     public function listHtml(Request $request): Response
     {
-        $content = $this->htmlArticlePresenter->present(new UseCaseResponse(true, ''));
+        $content = $this->htmlArticlePresenter->present(new ArticleListResponse(true, ''));
         return new Response($content, 200, ['Content-Type' => 'text/html']);
     }
 
@@ -55,7 +55,7 @@ class ArticleController
     {
         $articles = $this->articleRepository->findAll();
 
-        $response = new UseCaseResponse(true, 'Articles retrieved successfully', $articles);
+        $response = new ArticleListResponse(true, 'Articles retrieved successfully', $articles);
 
         $content = $this->jsonArticleListPresenter->present($response);
 

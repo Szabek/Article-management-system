@@ -2,13 +2,13 @@
 
 namespace App\Article\Application\UseCase;
 
-class UseCaseResponse
+class ArticleListResponse
 {
     public bool $success;
     public string $message;
-    public mixed $data;
+    public array $data;
 
-    public function __construct(bool $success, string $message = '', mixed $data = null)
+    public function __construct(bool $success, string $message = '', array $data = [])
     {
         $this->success = $success;
         $this->message = $message;

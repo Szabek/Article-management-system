@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Article\Application\UseCase;
+namespace App\Article\Application\UseCase\Delete;
 
+use App\Article\Application\UseCase\ArticleResponse;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use Exception;
 
@@ -14,13 +15,13 @@ class DeleteArticleUseCase
         $this->articleRepository = $articleRepository;
     }
 
-    public function execute(int $id): UseCaseResponse
+    public function execute(int $id): ArticleResponse
     {
         try {
             $this->articleRepository->delete($id);
-            return new UseCaseResponse(true, 'Article deleted successfully');
+            return new ArticleResponse(true, 'Article deleted successfully');
         } catch (Exception $e) {
-            return new UseCaseResponse(false, 'Failed to delete article: ' . $e->getMessage());
+            return new ArticleResponse(false, 'Failed to delete article: ' . $e->getMessage());
         }
     }
 }
