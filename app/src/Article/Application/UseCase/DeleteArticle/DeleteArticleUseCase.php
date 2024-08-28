@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Article\Application\UseCase\Delete;
+namespace App\Article\Application\UseCase\DeleteArticle;
 
 use App\Article\Application\UseCase\ArticleResponse;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;

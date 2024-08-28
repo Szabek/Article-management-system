@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Article\Application\UseCase\Create;
+namespace App\Article\Application\UseCase\CreateArticle;
 
 use App\Article\Application\UseCase\ArticleResponse;
 use App\Article\Domain\Entity\Article;

@@ -1,8 +1,8 @@
 <?php
 
-use App\Article\Application\UseCase\Create\CreateArticleUseCase;
-use App\Article\Application\UseCase\Delete\DeleteArticleUseCase;
-use App\Article\Application\UseCase\Update\UpdateArticleUseCase;
+use App\Article\Application\UseCase\CreateArticle\CreateArticleUseCase;
+use App\Article\Application\UseCase\DeleteArticle\DeleteArticleUseCase;
+use App\Article\Application\UseCase\UpdateArticle\UpdateArticleUseCase;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Controller\ArticleController;
 use App\Article\Infrastructure\Presenter\ArticlePresenter;

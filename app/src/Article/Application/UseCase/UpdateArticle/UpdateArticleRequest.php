@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Article\Application\UseCase\Update;
+namespace App\Article\Application\UseCase\UpdateArticle;
 
 class UpdateArticleRequest
 {

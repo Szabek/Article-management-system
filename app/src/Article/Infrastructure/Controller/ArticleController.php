@@ -3,11 +3,11 @@
 namespace App\Article\Infrastructure\Controller;
 
 use App\Article\Application\UseCase\ArticleListResponse;
-use App\Article\Application\UseCase\Create\CreateArticleRequest;
-use App\Article\Application\UseCase\Create\CreateArticleUseCase;
-use App\Article\Application\UseCase\Delete\DeleteArticleUseCase;
-use App\Article\Application\UseCase\Update\UpdateArticleRequest;
-use App\Article\Application\UseCase\Update\UpdateArticleUseCase;
+use App\Article\Application\UseCase\CreateArticle\CreateArticleRequest;
+use App\Article\Application\UseCase\CreateArticle\CreateArticleUseCase;
+use App\Article\Application\UseCase\DeleteArticle\DeleteArticleUseCase;
+use App\Article\Application\UseCase\UpdateArticle\UpdateArticleRequest;
+use App\Article\Application\UseCase\UpdateArticle\UpdateArticleUseCase;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Presenter\ArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
