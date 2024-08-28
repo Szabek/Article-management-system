@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Application{% endblock %}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <img src="/assets/images/logo.svg" alt="Logo">
+    </div>
+</header>
+<main>
+    <div id="message-container">
+        <div id="message"></div>
+    </div>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <!-- Optional footer content -->
+</footer>
+</body>
+</html>

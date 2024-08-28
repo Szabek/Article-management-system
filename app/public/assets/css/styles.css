@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    background-image: url('/assets/images/waves.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #0B3C80;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #0B3C80;
+    font-size: 24px;
+}
+
+#article-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#article-form input[type="text"],
+#article-form textarea {
+    background: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#article-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0B3C80;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#article-form button:hover {
+    background-color: #2a4365;
+}
+
+.article-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.article-list li {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #e2e8f0;
+}
+
+.article-list li span {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.edit-article, .delete-article {
+    cursor: pointer;
+    color: #0B3C80;
+}
+
+.edit-article:hover, .delete-article:hover {
+    color: #2a4365;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#message.green {
+    background-color: #48bb78;
+    color: white;
+}
+
+#message.red {
+    background-color: #e53e3e;
+    color: white;
+}
+
+.logout-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #0B3C80;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.logout-btn:hover {
+    background-color: #2a4365;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-container form input[type="text"],
+.login-container form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0B3C80;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-container form button:hover {
+    background-color: #2a4365;
+}
+
+.article-list a img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+#form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#cancel-edit-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#cancel-edit-button img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    transition: opacity 0.3s ease;
+}
+
+#cancel-edit-button:hover img {
+    opacity: 0.7;
+}
+
+#description {
+    height: 200px;
+    max-width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 20px 0;
+}
+
+.logo-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-title {
+    font-weight: bold;
+}
+
+.article-title,
+.article-description {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
