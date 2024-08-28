@@ -9,7 +9,7 @@ use App\Article\Application\UseCase\DeleteArticle\DeleteArticleUseCase;
 use App\Article\Application\UseCase\UpdateArticle\UpdateArticleRequest;
 use App\Article\Application\UseCase\UpdateArticle\UpdateArticleUseCase;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
-use App\Article\Infrastructure\Presenter\ArticlePresenter;
+use App\Article\Infrastructure\Presenter\HtmlArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
 use Szabek\Framework\Http\Request;
@@ -19,7 +19,7 @@ class ArticleController
 {
     private CreateArticleUseCase $createArticleUseCase;
     private UpdateArticleUseCase $updateArticleUseCase;
-    private ArticlePresenter $htmlArticlePresenter;
+    private HtmlArticlePresenter $htmlArticlePresenter;
     private JsonArticlePresenter $jsonArticlePresenter;
     private JsonArticleListPresenter $jsonArticleListPresenter;
     private ArticleRepositoryInterface $articleRepository;
@@ -29,7 +29,7 @@ class ArticleController
     public function __construct(
         CreateArticleUseCase       $createArticleUseCase,
         UpdateArticleUseCase       $updateArticleUseCase,
-        ArticlePresenter           $htmlArticlePresenter,
+        HtmlArticlePresenter       $htmlArticlePresenter,
         JsonArticlePresenter       $jsonArticlePresenter,
         JsonArticleListPresenter   $jsonArticleListPresenter,
         ArticleRepositoryInterface $articleRepository,

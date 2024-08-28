@@ -6,7 +6,7 @@ use App\Article\Application\UseCase\ArticleListResponse;
 use App\Article\Infrastructure\ArticlePresenterInterface;
 use Twig\Environment;
 
-class ArticlePresenter implements ArticlePresenterInterface
+class HtmlArticlePresenter implements ArticlePresenterInterface
 {
     private Environment $twig;
 

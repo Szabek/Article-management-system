@@ -5,7 +5,7 @@ use App\Article\Application\UseCase\DeleteArticle\DeleteArticleUseCase;
 use App\Article\Application\UseCase\UpdateArticle\UpdateArticleUseCase;
 use App\Article\Domain\Repository\ArticleRepositoryInterface;
 use App\Article\Infrastructure\Controller\ArticleController;
-use App\Article\Infrastructure\Presenter\ArticlePresenter;
+use App\Article\Infrastructure\Presenter\HtmlArticlePresenter;
 use App\Article\Infrastructure\Presenter\JsonArticleListPresenter;
 use App\Article\Infrastructure\Presenter\JsonArticlePresenter;
 use App\Article\Infrastructure\Repository\ArticleRepository;
@@ -79,8 +79,8 @@ return function (Container $container) {
         );
     });
 
-    $container->set(ArticlePresenter::class, function ($c) {
-        return new ArticlePresenter($c->get(Environment::class));
+    $container->set(HtmlArticlePresenter::class, function ($c) {
+        return new HtmlArticlePresenter($c->get(Environment::class));
     });
 
     $container->set(JsonArticleListPresenter::class, function ($c) {
@@ -111,7 +111,7 @@ return function (Container $container) {
         return new ArticleController(
             $c->get(CreateArticleUseCase::class),
             $c->get(UpdateArticleUseCase::class),
-            $c->get(ArticlePresenter::class),
+            $c->get(HtmlArticlePresenter::class),
             $c->get(JsonArticlePresenter::class),
             $c->get(JsonArticleListPresenter::class),
             $c->get(ArticleRepositoryInterface::class),
