@@ -25,7 +25,14 @@ function initializeEventHandlers() {
             event.preventDefault();
             const articleId = newButton.dataset.id;
             await removeArticle(articleId)
-                .then(initializeArticlesList);
+                .then(() => {
+                    showMessage('Article deleted successfully!', 'green');
+                    initializeArticlesList();
+                })
+                .catch(error => {
+                    showMessage('Failed to delete the article.', 'red');
+                    console.error(error);
+                });
         });
     });
 
