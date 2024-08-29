@@ -17,7 +17,8 @@
     }
   },
   "require-dev": {
-    "symfony/var-dumper": "7.2.x-dev"
+    "symfony/var-dumper": "7.2.x-dev",
+    "phpunit/phpunit": "11.4.x-dev"
   },
   "require": {
     "nikic/fast-route": "^2.0@dev",
