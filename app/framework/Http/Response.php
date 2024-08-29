@@ -22,4 +22,19 @@ class Response
 
         echo $this->content;
     }
+
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    public function getHeaders(): array
+    {
+        return $this->headers;
+    }
+
+    public function getContent(): string
+    {
+        return $this->content;
+    }
 }

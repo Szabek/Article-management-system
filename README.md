@@ -49,6 +49,12 @@ application also includes a user authentication system with login and logout fun
    docker compose exec app php scripts/console.php seed 
    ```
 
+### Tests
+
+```bash
+   docker-compose exec app vendor/bin/phpunit
+   ```
+
 ### Access the Application
 
 Once the containers are up and running, you can access the application in your browser:
